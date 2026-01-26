@@ -1,0 +1,2798 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BSS School | Excellence in Education</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <!-- Animate.css for animations -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <style>
+        :root {
+            --primary-color: #4361ee;
+            --secondary-color: #3a0ca3;
+            --accent-color: #f72585;
+            --success-color: #4cc9f0;
+            --text-color: #2b2d42;
+            --light-bg: #f8f9fa;
+            --dark-bg: #121212;
+            --header-height: 85px;
+            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            --gradient-primary: linear-gradient(135deg, #4361ee 0%, #3a0ca3 100%);
+            --gradient-secondary: linear-gradient(135deg, #f72585 0%, #b5179e 100%);
+            --gradient-accent: linear-gradient(135deg, #4cc9f0 0%, #4895ef 100%);
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            --shadow-hover: 0 20px 40px rgba(0, 0, 0, 0.12);
+            --border-radius: 16px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-color);
+            line-height: 1.7;
+            overflow-x: hidden;
+            background-color: #fff;
+            transition: background-color 0.5s ease;
+        }
+
+        h1, h2, h3, h4, h5 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            line-height: 1.3;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 25px;
+        }
+
+        /* AI Animations */
+        .ai-float {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .ai-pulse {
+            animation: pulse 2.5s ease infinite;
+        }
+
+        .ai-typing {
+            overflow: hidden;
+            border-right: 3px solid var(--primary-color);
+            white-space: nowrap;
+            animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+        }
+
+        .ai-fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .ai-fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .ai-slide-in-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .ai-slide-in-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .ai-slide-in-right {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .ai-slide-in-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent; }
+            50% { border-color: var(--primary-color); }
+        }
+
+        @keyframes gradient-shift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Header Styles */
+        header {
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            height: var(--header-height);
+            transition: var(--transition);
+        }
+
+        header.scrolled {
+            height: 70px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 100%;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-img {
+            height: 65px;
+            width: 65px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--primary-color);
+            padding: 3px;
+            transition: var(--transition);
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo-text h1 {
+            font-size: 1.6rem;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: 700;
+        }
+
+        .logo-text span {
+            font-size: 0.85rem;
+            color: #666;
+            font-weight: 500;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            font-size: 1rem;
+            transition: var(--transition);
+            position: relative;
+            padding: 8px 0;
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 3px;
+            bottom: 0;
+            left: 0;
+            background: var(--gradient-secondary);
+            border-radius: 10px;
+            transition: var(--transition);
+        }
+
+        nav ul li a:hover {
+            color: var(--primary-color);
+        }
+
+        nav ul li a:hover::after,
+        nav ul li a.active::after {
+            width: 100%;
+        }
+
+        .nav-buttons {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--primary-color);
+            background: none;
+            border: none;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+                        url('school.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            color: white;
+            margin-top: var(--header-height);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%234361ee' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
+            opacity: 0.3;
+        }
+
+        .hero-content {
+            max-width: 950px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h2 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+            line-height: 1.2;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 35px;
+            max-width: 700px;
+            opacity: 0.9;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: var(--gradient-primary);
+            color: white;
+            padding: 15px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 100%;
+            background: var(--gradient-secondary);
+            transition: var(--transition);
+            z-index: -1;
+        }
+
+        .btn:hover::before {
+            width: 100%;
+        }
+
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 25px rgba(67, 97, 238, 0.3);
+        }
+
+        .btn-secondary {
+            background: var(--gradient-secondary);
+        }
+
+        .btn-secondary::before {
+            background: var(--gradient-primary);
+        }
+
+        .btn-accent {
+            background: var(--gradient-accent);
+        }
+
+        /* Stats Section */
+        .stats {
+            padding: 80px 0;
+            background: var(--gradient-primary);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stats::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .stat-item {
+            padding: 30px 20px;
+            border-radius: var(--border-radius);
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            transition: var(--transition);
+        }
+
+        .stat-item:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            display: block;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .stat-text {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        /* Sections */
+        section {
+            padding: 100px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-size: 2.8rem;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: inline-block;
+            margin-bottom: 15px;
+            position: relative;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 5px;
+            background: var(--gradient-secondary);
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 10px;
+        }
+
+        .section-title p {
+            max-width: 700px;
+            margin: 25px auto 0;
+            color: #666;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        /* About Section */
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+        }
+
+        .about-text {
+            flex: 1;
+        }
+
+        .about-text h3 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: var(--secondary-color);
+        }
+
+        .about-image {
+            flex: 1;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            position: relative;
+        }
+
+        .about-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-primary);
+            opacity: 0;
+            transition: var(--transition);
+            z-index: 1;
+        }
+
+        .about-image:hover::before {
+            opacity: 0.2;
+        }
+
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: var(--transition);
+        }
+
+        .about-image:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Leadership Section */
+        .leadership {
+            background-color: var(--light-bg);
+        }
+
+        .leadership-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 35px;
+            margin-top: 50px;
+        }
+
+        .leader-card {
+            background: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+            text-align: center;
+        }
+
+        .leader-card:hover {
+            transform: translateY(-15px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .leader-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid white;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin: 30px auto 20px;
+            display: block;
+            position: relative;
+            z-index: 2;
+        }
+
+        .leader-content {
+            padding: 0 25px 30px;
+        }
+
+        .leader-content h3 {
+            color: var(--secondary-color);
+            margin-bottom: 5px;
+            font-size: 1.4rem;
+        }
+
+        .position {
+            color: var(--primary-color);
+            font-weight: 600;
+            margin-bottom: 15px;
+            display: inline-block;
+            padding: 5px 15px;
+            background: rgba(67, 97, 238, 0.1);
+            border-radius: 50px;
+        }
+
+        .desc {
+            color: #666;
+            line-height: 1.7;
+        }
+
+        /* Programs Section */
+        .programs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 35px;
+        }
+
+        .program-card {
+            background: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .program-card:hover {
+            transform: translateY(-15px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .program-image {
+            height: 220px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .program-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-primary);
+            opacity: 0;
+            transition: var(--transition);
+            z-index: 1;
+        }
+
+        .program-card:hover .program-image::before {
+            opacity: 0.3;
+        }
+
+        .program-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .program-card:hover .program-image img {
+            transform: scale(1.1);
+        }
+
+        .program-content {
+            padding: 25px;
+        }
+
+        .program-content h3 {
+            color: var(--secondary-color);
+            margin-bottom: 12px;
+            font-size: 1.5rem;
+        }
+
+        .program-tags {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+
+        .program-tag {
+            background: rgba(67, 97, 238, 0.1);
+            color: var(--primary-color);
+            padding: 5px 12px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        /* Facilities Section */
+        .facilities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 35px;
+        }
+
+        .facility-card {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 40px 30px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .facility-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: var(--gradient-primary);
+            transition: var(--transition);
+        }
+
+        .facility-card:hover::before {
+            width: 100%;
+            opacity: 0.05;
+        }
+
+        .facility-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .facility-icon {
+            font-size: 3.5rem;
+            margin-bottom: 25px;
+            display: inline-block;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .facility-card h3 {
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+
+        /* Testimonials */
+        .testimonials-slider {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .testimonial {
+            background: white;
+            padding: 40px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            text-align: center;
+            position: relative;
+            margin: 0 20px;
+        }
+
+        .testimonial::before {
+            content: '\201C';
+            font-size: 8rem;
+            color: rgba(67, 97, 238, 0.1);
+            position: absolute;
+            top: -30px;
+            left: 20px;
+            font-family: serif;
+        }
+
+        .testimonial-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 25px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .author-img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        /* Contact Section */
+        .contact-content {
+            display: flex;
+            gap: 60px;
+        }
+
+        .contact-info {
+            flex: 1;
+        }
+
+        .contact-form {
+            flex: 1;
+            background: white;
+            padding: 40px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+        }
+
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 30px;
+            padding: 25px;
+            background: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .info-item:hover {
+            transform: translateX(10px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .info-icon {
+            font-size: 1.8rem;
+            margin-right: 20px;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            min-width: 40px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #555;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 15px 20px;
+            border: 2px solid #eee;
+            border-radius: 12px;
+            font-size: 1rem;
+            transition: var(--transition);
+            font-family: 'Inter', sans-serif;
+        }
+
+        .form-control:focus {
+            border-color: var(--primary-color);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2);
+        }
+
+        textarea.form-control {
+            min-height: 180px;
+            resize: vertical;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark-bg);
+            color: white;
+            padding: 80px 0 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--gradient-primary);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 50px;
+            margin-bottom: 50px;
+        }
+
+        .footer-column h3 {
+            font-size: 1.4rem;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 3px;
+            background: var(--gradient-secondary);
+            bottom: 0;
+            left: 0;
+            border-radius: 10px;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .footer-links a:hover {
+            color: white;
+            transform: translateX(5px);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background: var(--gradient-primary);
+            transform: translateY(-5px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+
+        /* AI Assistant */
+        .ai-assistant {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 70px;
+            height: 70px;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.8rem;
+            cursor: pointer;
+            box-shadow: 0 10px 25px rgba(67, 97, 238, 0.4);
+            z-index: 999;
+            transition: var(--transition);
+        }
+
+        .ai-assistant:hover {
+            transform: scale(1.1) rotate(10deg);
+            box-shadow: 0 15px 30px rgba(67, 97, 238, 0.6);
+        }
+
+        .ai-chatbot {
+            position: fixed;
+            bottom: 110px;
+            right: 30px;
+            width: 350px;
+            background: white;
+            border-radius: var(--border-radius);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+            z-index: 1000;
+            overflow: hidden;
+            display: none;
+            transform: translateY(20px);
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .ai-chatbot.active {
+            display: block;
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .chat-header {
+            background: var(--gradient-primary);
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chat-body {
+            padding: 20px;
+            height: 300px;
+            overflow-y: auto;
+        }
+
+        .chat-message {
+            margin-bottom: 15px;
+            padding: 12px 18px;
+            border-radius: 20px;
+            max-width: 80%;
+        }
+
+        .chat-message.bot {
+            background: #f0f5ff;
+            border-bottom-left-radius: 5px;
+            align-self: flex-start;
+        }
+
+        .chat-message.user {
+            background: var(--gradient-primary);
+            color: white;
+            border-bottom-right-radius: 5px;
+            align-self: flex-end;
+            margin-left: auto;
+        }
+
+        .chat-input {
+            display: flex;
+            padding: 15px;
+            border-top: 1px solid #eee;
+        }
+
+        .chat-input input {
+            flex: 1;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 30px;
+            font-size: 0.9rem;
+        }
+
+        .chat-input button {
+            background: var(--gradient-primary);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 45px;
+            height: 45px;
+            margin-left: 10px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        /* Theme Customizer */
+        .theme-customizer {
+            position: fixed;
+            top: 50%;
+            right: -350px;
+            transform: translateY(-50%);
+            background: white;
+            width: 350px;
+            padding: 25px;
+            box-shadow: -5px 0 25px rgba(0, 0, 0, 0.1);
+            border-radius: 20px 0 0 20px;
+            transition: var(--transition);
+            z-index: 1001;
+        }
+
+        .theme-customizer.open {
+            right: 0;
+        }
+
+        .theme-toggle {
+            position: absolute;
+            left: -50px;
+            top: 20px;
+            width: 50px;
+            height: 50px;
+            background: var(--gradient-primary);
+            color: white;
+            border-radius: 15px 0 0 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.5rem;
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .color-options {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .color-option {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: var(--transition);
+            border: 3px solid transparent;
+            position: relative;
+        }
+
+        .color-option.active::after {
+            content: '\f00c';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 1rem;
+        }
+
+        .theme-option {
+            margin-bottom: 20px;
+        }
+
+        .theme-option label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .theme-option select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #eee;
+            border-radius: 10px;
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* New Features */
+        .news-section {
+            background-color: var(--light-bg);
+        }
+
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 35px;
+        }
+
+        .news-card {
+            background: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .news-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .news-image {
+            height: 220px;
+            overflow: hidden;
+        }
+
+        .news-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .news-card:hover .news-image img {
+            transform: scale(1.05);
+        }
+
+        .news-content {
+            padding: 25px;
+        }
+
+        .news-date {
+            color: var(--primary-color);
+            font-weight: 500;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .news-content h3 {
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+            line-height: 1.4;
+        }
+
+        .news-content p {
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        /* Events Calendar */
+        .events-calendar {
+            display: flex;
+            gap: 50px;
+            align-items: flex-start;
+        }
+
+        .calendar-widget {
+            flex: 1;
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 30px;
+            box-shadow: var(--shadow);
+        }
+
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 10px;
+        }
+
+        .calendar-day {
+            text-align: center;
+            padding: 10px;
+            border-radius: 10px;
+            font-weight: 500;
+        }
+
+        .calendar-day.active {
+            background: var(--gradient-primary);
+            color: white;
+        }
+
+        .events-list {
+            flex: 2;
+        }
+
+        .event-item {
+            display: flex;
+            gap: 20px;
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .event-item:hover {
+            transform: translateX(10px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .event-date {
+            background: var(--gradient-primary);
+            color: white;
+            width: 70px;
+            height: 70px;
+            border-radius: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .event-date .day {
+            font-size: 1.8rem;
+            font-weight: 700;
+            line-height: 1;
+        }
+
+        .event-date .month {
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            width: 50px;
+            height: 50px;
+            background: var(--gradient-primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 1.3rem;
+            box-shadow: 0 5px 20px rgba(67, 97, 238, 0.3);
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            z-index: 999;
+        }
+
+        .back-to-top.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(67, 97, 238, 0.5);
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 1200px) {
+            .hero h2 {
+                font-size: 3rem;
+            }
+            
+            .events-calendar {
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .about-content, .contact-content {
+                flex-direction: column;
+            }
+            
+            .section-title h2 {
+                font-size: 2.4rem;
+            }
+            
+            .hero h2 {
+                font-size: 2.6rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                position: fixed;
+                top: var(--header-height);
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - var(--header-height));
+                background: white;
+                flex-direction: column;
+                padding: 40px 30px;
+                transition: var(--transition);
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+                z-index: 999;
+                gap: 0;
+            }
+
+            nav ul.show {
+                left: 0;
+            }
+
+            nav ul li {
+                margin: 15px 0;
+            }
+
+            nav ul li a {
+                font-size: 1.2rem;
+                padding: 12px 0;
+                display: block;
+            }
+
+            .mobile-menu {
+                display: block;
+                z-index: 1000;
+            }
+
+            .hero h2 {
+                font-size: 2.2rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .section-title h2 {
+                font-size: 2rem;
+            }
+
+            .ai-chatbot {
+                width: calc(100vw - 60px);
+                right: 15px;
+                bottom: 100px;
+            }
+
+            .theme-customizer {
+                width: 100%;
+                right: -100%;
+                border-radius: 0;
+            }
+
+            .theme-customizer.open {
+                right: 0;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .container {
+                padding: 0 15px;
+            }
+            
+            .programs-grid, .facilities-grid, .leadership-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero h2 {
+                font-size: 1.8rem;
+            }
+            
+            .btn {
+                padding: 12px 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- AI Assistant -->
+    <div class="ai-assistant" id="ai-assistant">
+        <i class="fas fa-robot"></i>
+    </div>
+    
+    <!-- AI Chatbot -->
+    <div class="ai-chatbot" id="ai-chatbot">
+        <div class="chat-header">
+            <h4>BSS School Assistant</h4>
+            <button id="close-chat"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="chat-body" id="chat-body">
+            <div class="chat-message bot">
+                Hello! I'm your BSS School assistant. How can I help you today?
+            </div>
+        </div>
+        <div class="chat-input">
+            <input type="text" id="chat-input" placeholder="Type your question...">
+            <button id="send-message"><i class="fas fa-paper-plane"></i></button>
+        </div>
+    </div>
+
+    <!-- Theme Customizer -->
+    <div class="theme-customizer" id="theme-customizer">
+        <div class="theme-toggle" id="theme-toggle">
+            <i class="fas fa-palette"></i>
+        </div>
+        <div class="theme-options">
+            <h3>Customize Theme</h3>
+            <div class="theme-option">
+                <label>Primary Color</label>
+                <div class="color-options">
+                    <div class="color-option active" style="background-color: #4361ee;" data-color="#4361ee"></div>
+                    <div class="color-option" style="background-color: #d23c6e;" data-color="#d23c6e"></div>
+                    <div class="color-option" style="background-color: #0b8043;" data-color="#0b8043"></div>
+                    <div class="color-option" style="background-color: #8e24aa;" data-color="#8e24aa"></div>
+                    <div class="color-option" style="background-color: #f4511e;" data-color="#f4511e"></div>
+                    <div class="color-option" style="background-color: #546e7a;" data-color="#546e7a"></div>
+                </div>
+            </div>
+            <div class="theme-option">
+                <label for="font-family">Font Family</label>
+                <select id="font-family">
+                    <option value="'Inter', sans-serif">Inter (Modern)</option>
+                    <option value="'Poppins', sans-serif">Poppins (Clean)</option>
+                    <option value="'Montserrat', sans-serif">Montserrat (Bold)</option>
+                    <option value="'Roboto', sans-serif">Roboto (Simple)</option>
+                </select>
+            </div>
+            <div class="theme-option">
+                <label for="theme-style">Theme Style</label>
+                <select id="theme-style">
+                    <option value="default">Default</option>
+                    <option value="dark">Dark Mode</option>
+                    <option value="gradient">Gradient</option>
+                </select>
+            </div>
+            <button class="btn" id="reset-theme">Reset to Default</button>
+        </div>
+    </div>
+
+    <!-- Back to Top Button -->
+    <a href="#home" class="back-to-top" id="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <!-- Header -->
+    <header id="header">
+        <div class="container header-container">
+            <div class="logo">
+                <img src="school logo 01.jpg" alt="BSS School Logo" class="logo-img ai-float">
+                <div class="logo-text">
+                    <h1>B S SUMMER SINGH MEMORIAL H S SCHOOL</h1>
+                    <span>Excellence in Education Since 1999</span>
+                </div>
+            </div>
+            <nav>
+                <ul id="nav-menu">
+                    <li><a href="#home" class="active">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#leadership">Leadership</a></li>
+                    <li><a href="#programs">Programs</a></li>
+                    <li><a href="#facilities">Facilities</a></li>
+                    <li><a href="Gallery.html">Gallery</a></li>
+                    <li><a href="#testimonials">Testimonials</a></li>
+                    <li><a href="teachers.html">Our Teachers</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <div class="nav-buttons">
+                    <button class="mobile-menu" id="mobile-menu">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container hero-content">
+            <h2 class="ai-typing">B S SUMMER SINGH MEMORIAL H S SCHOOL</h2>
+            <p>Where tradition meets innovation. We nurture future leaders with a perfect blend of academic excellence, creativity, and character development.</p>
+            <a href="#about" class="btn ai-pulse">Discover More <i class="fas fa-arrow-right"></i></a>
+            <a href="#contact" class="btn btn-secondary" style="margin-left: 15px;">Admissions Open</a>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item ai-fade-in">
+                    <span class="stat-number" id="students-count">1000</span>
+                    <span class="stat-text">Happy Students</span>
+                </div>
+                <div class="stat-item ai-fade-in">
+                    <span class="stat-number" id="teachers-count">0</span>
+                    <span class="stat-text">Qualified Teachers</span>
+                </div>
+                <div class="stat-item ai-fade-in">
+                    <span class="stat-number" id="years-count">0</span>
+                    <span class="stat-text">Years of Excellence</span>
+                </div>
+                <div class="stat-item ai-fade-in">
+                    <span class="stat-number" id="courses-count">0</span>
+                    <span class="stat-text">Courses Offered</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>About Our School</h2>
+                <p>Established in 1999, BSS School has been at the forefront of providing quality education and holistic development for students in Budaun and beyond.</p>
+            </div>
+
+            <div class="about-content">
+                <div class="about-text ai-slide-in-left">
+                    <h3>Our Mission & Vision</h3>
+                    <p>Our mission is to provide a stimulating learning environment that empowers students to become confident, responsible, and successful global citizens. We focus on holistic development through a balanced approach to academics, arts, sports, and character building.</p>
+                    <p>We believe in nurturing each child's unique talents and abilities with a comprehensive curriculum guided by our dedicated faculty. Our vision is to be recognized as a center of excellence that transforms students into lifelong learners and leaders of tomorrow.</p>
+                    <a href="#contact" class="btn" style="margin-top: 20px;">Schedule a Visit</a>
+                </div>
+
+                <div class="about-image ai-slide-in-right">
+                    <img src="school.jpg" alt="School Building">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Leadership Section -->
+    <section class="leadership" id="leadership">
+        <div class="container">
+            <div class="section-title">
+                <h2>Meet Our Leadership</h2>
+                <p>The visionary leaders who guide our institution towards excellence and innovation in education.</p>
+            </div>
+
+            <div class="leadership-grid">
+                
+<!-- Founder -->
+<div class="leader-card ai-fade-in">
+    <img src="nana.jpg" alt="Founder" class="leader-img">
+    <div class="leader-content">
+        <h3>Late Shri Jagannath Singh</h3>
+        <p class="position">School Founder</p>
+        <p class="desc">The visionary who established J.S.S. Academy with a mission to provide accessible, quality education to the community of Budaun. His legacy continues to inspire our educational philosophy.</p>
+    </div>
+</div>
+
+<!-- President -->
+<div class="leader-card ai-fade-in">
+    <img src="satyapal photo.jpg" alt="President" class="leader-img">
+    <div class="leader-content">
+        <h3>Mr. Satyapal Singh</h3>
+        <p class="position">School President</p>
+        <p class="desc">Guiding the strategic vision and long-term direction of our institution, Mr. Satyapal Singh ensures alignment with our founding mission while fostering growth and community engagement.</p>
+    </div>
+</div>
+
+                
+<!-- Director -->
+<div class="leader-card ai-fade-in">
+    <img src="mr. parshuram.jpg" alt="Director" class="leader-img">
+    <div class="leader-content">
+        <h3>Mr. Parshuram</h3>
+        <p class="position">School Director</p>
+        <p class="desc">Overseeing academic oversight and pedagogical leadership, Mr. Parshuram ensures curriculum excellence, teacher development, and innovative learning practices for our students.</p>
+    </div>
+</div>
+
+<!-- Vice Director -->
+<div class="leader-card ai-fade-in">
+    <img src="mohitsir.jpg" alt="Vice Director" class="leader-img">
+    <div class="leader-content">
+        <h3>Netendra Pratap Singh</h3>
+        <p class="position">School Vice Director</p>
+        <p class="desc">Supporting the Director in academic leadership, Netendra Pratap Singh focuses on implementing educational strategies, monitoring student progress, and enhancing teaching methodologies.</p>
+    </div>
+</div>
+                <!-- Manager -->
+<div class="leader-card ai-fade-in">
+    <img src="sarvesh.jpg" alt="Manager" class="leader-img">
+    <div class="leader-content">
+        <h3>Sarvesh Kumari</h3>
+        <p class="position">School Manager</p>
+        <p class="desc">With over 25 years of experience in education administration, Sarvesh Kumari ensures our school maintains the highest standards of operational efficiency, academic excellence, and day-to-day management.</p>
+    </div>
+</div>
+  
+<!-- Former Manager -->
+<div class="leader-card ai-fade-in">
+    <img src="baba.jpg" alt="Former Manager" class="leader-img">
+    <div class="leader-content">
+        <h3>Late Shri Summer Singh</h3>
+        <p class="position">Former School Manager</p>
+        <p class="desc">Steered the institution through years of growth with dedication, laying a strong administrative foundation and nurturing a student-centric environment that continues to thrive today.</p>
+    </div>
+</div>
+
+
+
+<!-- Vice Chairman -->
+<div class="leader-card ai-fade-in">
+    <img src="netra.jpg" alt="Vice Chairman" class="leader-img">
+    <div class="leader-content">
+        <h3>Netra Pal Singh</h3>
+        <p class="position">School Vice Chairman</p>
+        <p class="desc">Assisting in governance and advisory functions, Netra Pal Singh works closely with the leadership team on policy development, institutional planning, and stakeholder relations.</p>
+    </div>
+</div>
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- Programs Section -->
+    <section class="programs" id="programs">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Academic Programs</h2>
+                <p>We offer a diverse range of academic programs designed to meet the needs of every student at different stages of their educational journey.</p>
+            </div>
+            <div class="programs-grid">
+                <div class="program-card ai-fade-in">
+                    <div class="program-image">
+                        <img src="5.jpg" alt="Elementary Program">
+                    </div>
+                    <div class="program-content">
+                        <div class="program-tags">
+                            <span class="program-tag">Grades 1-5</span>
+                            <span class="program-tag">Age 6-11</span>
+                        </div>
+                        <h3>Elementary School</h3>
+                        <p>Our elementary program focuses on building strong foundations in literacy, numeracy, and social skills through engaging, hands-on activities and personalized attention.</p>
+                        <a href="#" class="btn btn-accent" style="margin-top: 15px;">Learn More</a>
+                    </div>
+                </div>
+                <div class="program-card ai-fade-in">
+                    <div class="program-image">
+                        <img src="8.jpg" alt="Middle School Program">
+                    </div>
+                    <div class="program-content">
+                        <div class="program-tags">
+                            <span class="program-tag">Grades 6-8</span>
+                            <span class="program-tag">Age 12-14</span>
+                        </div>
+                        <h3>Middle School</h3>
+                        <p>Our middle school curriculum challenges students academically while providing support for their social and emotional development during these formative years.</p>
+                        <a href="#" class="btn btn-accent" style="margin-top: 15px;">Learn More</a>
+                    </div>
+                </div>
+                <div class="program-card ai-fade-in">
+                    <div class="program-image">
+                        <img src="13.jpg" alt="High School Program">
+                    </div>
+                    <div class="program-content">
+                        <div class="program-tags">
+                            <span class="program-tag">Grades 9-12</span>
+                            <span class="program-tag">Age 15-18</span>
+                        </div>
+                        <h3>High School</h3>
+                        <p>Our high school program prepares students for college and beyond with advanced placement courses, career guidance, and leadership opportunities.</p>
+                        <a href="#" class="btn btn-accent" style="margin-top: 15px;">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Facilities Section -->
+    <section id="facilities">
+        <div class="container">
+            <div class="section-title">
+                <h2>State-of-the-Art Facilities</h2>
+                <p>We provide modern facilities designed to enhance learning, creativity, and physical development for our students.</p>
+            </div>
+            <div class="facilities-grid">
+                <div class="facility-card ai-fade-in">
+                    <div class="facility-icon">
+                        <i class="fas fa-flask"></i>
+                    </div>
+                    <h3>Science Labs</h3>
+                    <p>Fully equipped laboratories for physics, chemistry, and biology with modern equipment and safety measures for hands-on learning.</p>
+                </div>
+                <div class="facility-card ai-fade-in">
+                    <div class="facility-icon">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <h3>Digital Library</h3>
+                    <p>Extensive collection of books, journals, and digital resources in a quiet, conducive learning environment with reading zones.</p>
+                </div>
+                <div class="facility-card ai-fade-in">
+                    <div class="facility-icon">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <h3>Computer Lab</h3>
+                    <p>Modern computer lab with high-speed internet, latest software, and robotics kits for technology and coding education.</p>
+                </div>
+                <div class="facility-card ai-fade-in">
+                    <div class="facility-icon">
+                        <i class="fas fa-running"></i>
+                    </div>
+                    <h3>Sports Complex</h3>
+                    <p>Spacious playgrounds , indoor sports facilities, physical education and extracurricular activities.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+     News & Events Section
+    <section class="news-section" id="news">
+        <div class="container">
+            <div class="section-title">
+                <h2>News & Events</h2>
+                <p>Stay updated with the latest happenings, achievements, and events at BSS School.</p>
+            </div>
+            
+          <!--  <div class="news-grid">
+                <div class="news-card ai-slide-in-left">
+                    <div class="news-image">
+                        <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Science Fair">
+                    </div>
+                    <div class="news-content">
+                        <span class="news-date">April 15, 2025</span>
+                        <h3>Annual Science Fair 2025</h3>
+                        <p>Our students showcased innovative projects at the annual science fair, with several projects selected for state-level competition.</p>
+                        <a href="#" class="btn">Read More</a>
+                    </div>
+                </div>
+                
+                <div class="news-card ai-fade-in">
+                    <div class="news-image">
+                        <img src="https://images.unsplash.com/photo-1546410531-bb4caa6b424d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Sports Day">
+                    </div>
+                    <div class="news-content">
+                        <span class="news-date">March 22, 2025</span>
+                        <h3>Inter-School Sports Championship</h3>
+                        <p>BSS School emerged as overall champions in the district-level inter-school sports championship, winning 12 gold medals.</p>
+                        <a href="#" class="btn">Read More</a>
+                    </div>
+                </div>
+                
+                <div class="news-card ai-slide-in-right">
+                    <div class="news-image">
+                        <img src="https://images.unsplash.com/photo-1515169067868-5387ec356754?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Art Exhibition">
+                    </div>
+                    <div class="news-content">
+                        <span class="news-date">February 10, 2025</span>
+                        <h3>Annual Art & Culture Exhibition</h3>
+                        <p>Our students displayed their artistic talents in painting, sculpture, and performing arts at the annual cultural exhibition.</p>
+                        <a href="#" class="btn">Read More</a>
+                    </div>
+                </div>
+             </div> -->
+     <!-- Events Calendar
+            <div class="events-calendar" style="margin-top: 80px;">
+                <div class="calendar-widget ai-slide-in-left">
+                    <div class="calendar-header">
+                        <h3>May 2025</h3>
+                        <div>
+                            <button><i class="fas fa-chevron-left"></i></button>
+                            <button><i class="fas fa-chevron-right"></i></button>
+                        </div>
+                    </div>
+                    <div class="calendar-grid">
+                         Calendar days would be populated with JavaScript -->
+                        <!-- <div class="calendar-day">Mon</div>
+                        <div class="calendar-day">Tue</div>
+                        <div class="calendar-day">Wed</div>
+                        <div class="calendar-day">Thu</div>
+                        <div class="calendar-day">Fri</div>
+                        <div class="calendar-day">Sat</div>
+                        <div class="calendar-day">Sun</div> -->
+                        <!-- Days would continue here -->
+                    <!-- </div>
+                </div> --> 
+                
+                <div class="events-list">
+                    <div class="event-item ai-slide-in-right">
+                        <div class="event-date">
+                            <span class="day">15</span>
+                            <span class="month">May</span>
+                        </div>
+                        <div class="event-details">
+                            <h4>Parent-Teacher Meeting</h4>
+                            <p>Quarterly PTM for all classes from 9:00 AM to 2:00 PM in respective classrooms.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="event-item ai-slide-in-right">
+                        <div class="event-date">
+                            <span class="day">22</span>
+                            <span class="month">May</span>
+                        </div>
+                        <div class="event-details">
+                            <h4>Annual Day Celebration</h4>
+                            <p>Our grand annual day function with cultural performances and award ceremonies.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="event-item ai-slide-in-right">
+                        <div class="event-date">
+                            <span class="day">30</span>
+                            <span class="month">May</span>
+                        </div>
+                        <div class="event-details">
+                            <h4>Summer Vacation Begins</h4>
+                            <p>School closes for summer break from May 30th to June 30th, 2025.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <div class="section-title">
+                <h2>What Parents & Alumni Say</h2>
+                <p>Hear from our community about their experiences with BSS School.</p>
+            </div>
+            <div class="testimonials-slider">
+                <div class="testimonial">
+                    <div class="testimonial-text">
+                        <p>My daughter has thrived at BSS School. The teachers are dedicated, and the curriculum challenges her while still being supportive. I'm impressed with how much she's grown academically and socially in just two years.</p>
+                    </div>
+                    <div class="testimonial-author"> 
+                        <img src="https://randomuser.me/api/portraits/women/45.jpg" alt="Parent" class="author-img">
+                        <div>
+                            <strong>Sarah Johnson</strong>
+                            <div>Parent of Grade 6 Student</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> -->
+
+
+
+
+    <!-- Testimonial Slider Section - Start -->
+<section class="testimonial-section">
+    <div class="container">
+        <div class="testimonial-header">
+            <h2>STUDENT TESTIMONIALS</h2>
+            <p class="subtitle">What Students Say About Blooming Dale School</p>
+            <p class="description">Students at Blooming Dale School praise the Bridge program for transforming their learning experience. They value its innovative approach, personalized attention, and skill-building activities, which boost confidence, foster creativity, and prepare them for future success.</p>
+        </div>
+        
+        <div class="testimonial-slider-container">
+            <div class="testimonial-slider">
+                <div class="testimonial-track" id="testimonialTrack">
+                    <!-- Slides will be added by JavaScript -->
+                </div>
+            </div>
+            
+            <div class="slider-nav" id="sliderNav">
+                <!-- Dots will be added by JavaScript -->
+            </div>
+            
+            <!-- <div class="slider-controls">
+                <button class="slider-btn prev-btn" id="prevBtn">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="slider-btn next-btn" id="nextBtn">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div> -->
+            
+            <div class="auto-toggle">
+                <span></span>
+                <label class="toggle-switch">
+                    <input type="checkbox" id="autoToggle" checked>
+                    <span class="toggle-slider"></span>
+                </label>
+                <span></span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    /* Testimonial Slider Styles */
+    .testimonial-section {
+        padding: 60px 20px;
+        background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    }
+    
+    .testimonial-section .container {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+    
+    .testimonial-header {
+        text-align: center;
+        margin-bottom: 50px;
+    }
+    
+    .testimonial-header h2 {
+        color: #2c5aa0;
+        font-size: 2.5rem;
+        margin-bottom: 15px;
+        position: relative;
+        display: inline-block;
+    }
+    
+    .testimonial-header h2:after {
+        content: '';
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80px;
+        height: 4px;
+        background-color: #ffc107;
+        border-radius: 2px;
+    }
+    
+    .testimonial-header .subtitle {
+        color: #495057;
+        font-size: 1.4rem;
+        font-weight: 600;
+        margin: 25px 0 15px;
+    }
+    
+    .testimonial-header .description {
+        color: #6c757d;
+        font-size: 1.1rem;
+        line-height: 1.6;
+        max-width: 800px;
+        margin: 0 auto;
+    }
+    
+    .testimonial-slider-container {
+        background: white;
+        border-radius: 15px;
+        padding: 40px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    }
+    
+    .testimonial-slider {
+        position: relative;
+        height: 280px;
+        overflow: hidden;
+        border-radius: 10px;
+        background-color: #f8f9fa;
+        border: 1px solid #e9ecef;
+    }
+    
+    .testimonial-track {
+        display: flex;
+        transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        height: 100%;
+    }
+    
+    .testimonial-slide {
+        min-width: 100%;
+        padding: 30px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    
+    .quote-icon {
+        font-size: 1.8rem;
+        color: #2c5aa0;
+        margin-bottom: 15px;
+        opacity: 0.7;
+    }
+    
+    .testimonial-text {
+        font-size: 1.15rem;
+        line-height: 1.7;
+        color: #495057;
+        margin-bottom: 25px;
+        font-style: italic;
+        position: relative;
+        padding-left: 10px;
+    }
+    
+    .student-info {
+        display: flex;
+        align-items: center;
+    }
+    
+    .student-avatar {
+        width: 55px;
+        height: 55px;
+        border-radius: 50%;
+        overflow: hidden;
+        margin-right: 15px;
+        border: 3px solid #e9ecef;
+        flex-shrink: 0;
+    }
+    
+    .student-avatar-initial {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-weight: bold;
+        font-size: 1.4rem;
+    }
+    
+    .student-details h3 {
+        color: #2c5aa0;
+        font-size: 1.25rem;
+        margin-bottom: 5px;
+    }
+    
+    .student-details p {
+        color: #6c757d;
+        font-size: 0.95rem;
+    }
+    
+    .slider-nav {
+        display: flex;
+        justify-content: center;
+        margin-top: 25px;
+    }
+    
+    .slider-dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background-color: #ced4da;
+        margin: 0 8px;
+        cursor: pointer;
+        transition: background-color 0.3s, transform 0.3s;
+    }
+    
+    .slider-dot.active {
+        background-color: #2c5aa0;
+        transform: scale(1.2);
+    }
+    
+    .slider-controls {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+        gap: 20px;
+    }
+    
+    .slider-btn {
+        background-color: #2c5aa0;
+        color: white;
+        border: none;
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        font-size: 1.2rem;
+        cursor: pointer;
+        transition: all 0.3s;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .slider-btn:hover {
+        background-color: #1a3d7a;
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+    
+    .auto-toggle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 25px;
+        color: #6c757d;
+        font-size: 0.9rem;
+        gap: 10px;
+    }
+    
+    .toggle-switch {
+        position: relative;
+        display: inline-block;
+        width: 48px;
+        height: 24px;
+    }
+    
+    .toggle-switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
+    
+    .toggle-slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ced4da;
+        transition: .4s;
+        border-radius: 34px;
+    }
+    
+    .toggle-slider:before {
+        position: absolute;
+        content: "";
+        height: 16px;
+        width: 16px;
+        left: 4px;
+        bottom: 4px;
+        background-color: white;
+        transition: .4s;
+        border-radius: 50%;
+    }
+    
+    input:checked + .toggle-slider {
+        background-color: #2c5aa0;
+    }
+    
+    input:checked + .toggle-slider:before {
+        transform: translateX(24px);
+    }
+    
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+        .testimonial-section {
+            padding: 40px 15px;
+        }
+        
+        .testimonial-header h2 {
+            font-size: 2rem;
+        }
+        
+        .testimonial-header .subtitle {
+            font-size: 1.2rem;
+        }
+        
+        .testimonial-slider-container {
+            padding: 25px;
+        }
+        
+        .testimonial-slider {
+            height: 320px;
+        }
+        
+        .testimonial-slide {
+            padding: 20px;
+        }
+        
+        .testimonial-text {
+            font-size: 1.05rem;
+        }
+    }
+    
+    @media (max-width: 480px) {
+        .testimonial-slider {
+            height: 350px;
+        }
+        
+        .student-info {
+            flex-direction: column;
+            text-align: center;
+        }
+        
+        .student-avatar {
+            margin-right: 0;
+            margin-bottom: 10px;
+        }
+        
+        .auto-toggle {
+            flex-wrap: wrap;
+        }
+    }
+</style>
+
+<script>
+    // Testimonial Slider JavaScript
+    document.addEventListener('DOMContentLoaded', function() {
+        // Testimonial data
+        const testimonials = [
+            {
+                id: 1,
+                text: "My experience at B S Summer Singh Memorial H S School has been very good. The teachers are supportive, and the school environment helps me learn and grow. I am thankful to be a part of this school.",
+                name: "Anjali ",
+                grade: "class 10 th ",
+                tagline: "Nurturing Creativity and Innovation",
+                avatarColor: "#2c5aa0"
+            },
+            {
+                id: 2,
+                text: "B S Summer Singh Memorial H S School provides quality education and a disciplined environment. The teachers guide us well, and I have improved a lot in my studies.",
+                name: "Needa parveen",
+                grade: "Class 9th",
+                tagline: "Personalized Learning Journey",
+                avatarColor: "#e63946"
+            },
+            {
+                id: 3,
+                text: "I am happy studying at B S Summer Singh Memorial H S School. The teachers are kind, and the school helps me learn better every day.",
+                name: "Sahile Babu",
+                grade: "Class 8th",
+                tagline: "Building Confidence and Leadership",
+                avatarColor: "#2a9d8f"
+            },
+            {
+                id: 4,
+                text: "My time at B S Summer Singh Memorial H S School has been wonderful. The teachers explain everything clearly, and the school provides good activities for overall development. I enjoy coming to school every day.",
+                name: "Kiran devi ",
+                grade: "Class 6th",
+                tagline: "Hands-on Science Exploration",
+                avatarColor: "#f4a261"
+            },
+            {
+                id: 5,
+                text: "B S Summer Singh Memorial H S School has helped me grow academically and personally. The teachers motivate us to do our best, and the school environment is friendly and supportive. I feel proud to be a student here.",
+                name: "Shurabh Srivastav",
+                grade: "Class 11th",
+                tagline: "Art Integrated Across Curriculum",
+                avatarColor: "#9d4edd"
+            }
+        ];
+
+        // DOM elements
+        const testimonialTrack = document.getElementById('testimonialTrack');
+        const sliderNav = document.getElementById('sliderNav');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const autoToggle = document.getElementById('autoToggle');
+
+        // State variables
+        let currentSlide = 0;
+        let slideInterval;
+        const slideDuration = 3000; // 3 seconds
+
+        // Initialize testimonials
+        function initTestimonials() {
+            // Clear existing content
+            testimonialTrack.innerHTML = '';
+            sliderNav.innerHTML = '';
+            
+            // Create slides and dots
+            testimonials.forEach((testimonial, index) => {
+                // Create slide
+                const slide = document.createElement('div');
+                slide.className = 'testimonial-slide';
+                slide.innerHTML = `
+                    <div class="quote-icon">
+                        <i class="fas fa-quote-left"></i>
+                    </div>
+                    <p class="testimonial-text">${testimonial.text}</p>
+                    <div class="student-info">
+                        <div class="student-avatar">
+                            <div class="student-avatar-initial" style="background-color:${testimonial.avatarColor}">
+                                ${testimonial.name.charAt(0)}
+                            </div>
+                        </div>
+                        <div class="student-details">
+                            <h3>${testimonial.name}, ${testimonial.grade}</h3>
+                            <p>${testimonial.tagline}</p>
+                        </div>
+                    </div>
+                `;
+                testimonialTrack.appendChild(slide);
+                
+                // Create dot
+                const dot = document.createElement('div');
+                dot.className = 'slider-dot';
+                if (index === 0) dot.classList.add('active');
+                dot.dataset.index = index;
+                dot.addEventListener('click', () => goToSlide(index));
+                sliderNav.appendChild(dot);
+            });
+            
+            // Start auto-slide
+            startAutoSlide();
+        }
+
+        // Go to specific slide
+        function goToSlide(slideIndex) {
+            // Update current slide
+            currentSlide = slideIndex;
+            
+            // Move track
+            testimonialTrack.style.transform = `translateX(-${currentSlide * 100}%)`;
+            
+            // Update active dot
+            document.querySelectorAll('.slider-dot').forEach((dot, index) => {
+                if (index === currentSlide) {
+                    dot.classList.add('active');
+                } else {
+                    dot.classList.remove('active');
+                }
+            });
+            
+            // Reset auto-slide timer
+            resetAutoSlide();
+        }
+
+        // Go to next slide
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % testimonials.length;
+            goToSlide(currentSlide);
+        }
+
+        // Go to previous slide
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + testimonials.length) % testimonials.length;
+            goToSlide(currentSlide);
+        }
+
+        // Start auto-slide
+        function startAutoSlide() {
+            if (autoToggle.checked) {
+                slideInterval = setInterval(nextSlide, slideDuration);
+            }
+        }
+
+        // Stop auto-slide
+        function stopAutoSlide() {
+            clearInterval(slideInterval);
+        }
+
+        // Reset auto-slide timer
+        function resetAutoSlide() {
+            stopAutoSlide();
+            startAutoSlide();
+        }
+
+        // Initialize event listeners
+        function initEventListeners() {
+            // Previous/Next buttons
+            prevBtn.addEventListener('click', prevSlide);
+            nextBtn.addEventListener('click', nextSlide);
+            
+            // Auto-slide toggle
+            autoToggle.addEventListener('change', function() {
+                if (this.checked) {
+                    startAutoSlide();
+                } else {
+                    stopAutoSlide();
+                }
+            });
+            
+            // // Keyboard navigation
+            // document.addEventListener('keydown', (e) => {
+            //     if (e.key === 'ArrowLeft') prevSlide();
+            //     if (e.key === 'ArrowRight') nextSlide();
+            // });
+            
+            // Pause auto-slide when user hovers over slider
+            testimonialTrack.addEventListener('mouseenter', stopAutoSlide);
+            testimonialTrack.addEventListener('mouseleave', () => {
+                if (autoToggle.checked) {
+                    startAutoSlide();
+                }
+            });
+        }
+
+        // Initialize the slider
+        initTestimonials();
+        initEventListeners();
+    });
+</script>
+<!-- Testimonial Slider Section - End -->
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Contact Us</h2>
+                <p>Get in touch with us to learn more about our programs, schedule a campus visit, or inquire about admissions.</p>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="info-item ai-slide-in-left">
+                        <div class="info-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div>
+                            <h3>Address</h3>
+                           <a href="https://maps.app.goo.gl/VaaZRx2eqnr8aBjV6?g_st=aw" target="_blank">
+                                <i class="fas fa-map-marker-alt"></i> SARFUDDINAGLA, Qadar Chowk Road, BUDAUN 243601
+                            </a>
+                        </div>
+                    </div>
+                    <div class="info-item ai-slide-in-left">
+                        <div class="info-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div>
+                            <h3>Phone</h3>
+                            <p>+91 7078470606 (Office)<br>+91 9068564405 (Admissions)</p>
+                        </div>
+                    </div>
+                    <div class="info-item ai-slide-in-left">
+                        <div class="info-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div>
+                            <h3>Email</h3>
+                            <p>bsssmhsschool@gmail.com</p>
+                        </div>
+                    </div>
+                    <div class="info-item ai-slide-in-left">
+                        <div class="info-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div>
+                            <h3>Office Hours</h3>
+                            <p>Monday - Saturday: 8:00 AM - 4:00 PM<br>Sunday: 9:00 AM - 1:00 PM</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form ai-slide-in-right">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Your Message</label>
+                            <textarea id="message" class="form-control" required placeholder="Tell us about your inquiry..."></textarea>
+                        </div>
+                        <button type="submit" class="btn" style="width: 100%;">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>About BSS School</h3>
+                    <p>BSS School is committed to providing quality education that prepares students for success in a rapidly changing world. We focus on holistic development through academic excellence, arts, sports, and character building.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home"><i class="fas fa-chevron-right"></i> Home</a></li>
+                        <li><a href="#about"><i class="fas fa-chevron-right"></i> About Us</a></li>
+                        <li><a href="#programs"><i class="fas fa-chevron-right"></i> Academic Programs</a></li>
+                        <li><a href="#facilities"><i class="fas fa-chevron-right"></i> Facilities</a></li>
+                        <li><a href="#news"><i class="fas fa-chevron-right"></i> News & Events</a></li>
+                        <li><a href="#contact"><i class="fas fa-chevron-right"></i> Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Academics</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Elementary School</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Middle School</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> High School</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Curriculum</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Extracurricular Activities</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Student Support</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact Info</h3>
+                    <ul class="footer-links">
+                        <li>
+                            <a href="https://maps.app.goo.gl/VaaZRx2eqnr8aBjV6?g_st=aw" target="_blank">
+                                <i class="fas fa-map-marker-alt"></i> SARFUDDINAGLA, Qadar Chowk Road, BUDAUN 243601
+                            </a>
+                        </li>
+                        <li><a href="tel:+917078470606"><i class="fas fa-phone"></i> +91 7078470606</a></li>
+                        <li><a href="mailto:info@bssschool.edu.in"><i class="fas fa-envelope"></i> bsssmhsschool@gmail.com</a></li>
+                        <!-- <li><a href="#"><i class="fas fa-globe"></i> www.bssschool.edu.in</a></li> -->
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 B S Summer Singh Memorial H S School. All Rights Reserved. | Designed with <i class="fas fa-heart" style="color: #f72585;"></i> for the future of education</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        document.getElementById('mobile-menu').addEventListener('click', function() {
+            document.getElementById('nav-menu').classList.toggle('show');
+            this.querySelector('i').classList.toggle('fa-bars');
+            this.querySelector('i').classList.toggle('fa-times');
+        });
+
+        // Theme Customizer Toggle
+        document.getElementById('theme-toggle').addEventListener('click', function() {
+            document.getElementById('theme-customizer').classList.toggle('open');
+        });
+
+        // Color Theme Change
+        const colorOptions = document.querySelectorAll('.color-option');
+        colorOptions.forEach(option => {
+            option.addEventListener('click', function() {
+                colorOptions.forEach(opt => opt.classList.remove('active'));
+                this.classList.add('active');
+                
+                const primaryColor = this.getAttribute('data-color');
+                document.documentElement.style.setProperty('--primary-color', primaryColor);
+                
+                // Generate new gradient based on selected color
+                const secondaryColor = adjustColor(primaryColor, -30);
+                const accentColor = adjustColor(primaryColor, 30);
+                
+                document.documentElement.style.setProperty('--secondary-color', secondaryColor);
+                document.documentElement.style.setProperty('--accent-color', accentColor);
+                document.documentElement.style.setProperty('--gradient-primary', `linear-gradient(135deg, ${primaryColor} 0%, ${secondaryColor} 100%)`);
+                document.documentElement.style.setProperty('--gradient-secondary', `linear-gradient(135deg, ${accentColor} 0%, ${adjustColor(accentColor, -20)} 100%)`);
+            });
+        });
+
+        // Helper function to adjust color brightness
+        function adjustColor(color, amount) {
+            let usePound = false;
+            if (color[0] === "#") {
+                color = color.slice(1);
+                usePound = true;
+            }
+            const num = parseInt(color, 16);
+            let r = (num >> 16) + amount;
+            if (r > 255) r = 255;
+            else if (r < 0) r = 0;
+            let b = ((num >> 8) & 0x00FF) + amount;
+            if (b > 255) b = 255;
+            else if (b < 0) b = 0;
+            let g = (num & 0x0000FF) + amount;
+            if (g > 255) g = 255;
+            else if (g < 0) g = 0;
+            return (usePound ? "#" : "") + (g | (b << 8) | (r << 16)).toString(16).padStart(6, '0');
+        }
+
+        // Font Family Change
+        document.getElementById('font-family').addEventListener('change', function() {
+            document.body.style.fontFamily = this.value;
+        });
+
+        // Theme Style Change
+        document.getElementById('theme-style').addEventListener('change', function() {
+            const style = this.value;
+            
+            if (style === 'dark') {
+                document.documentElement.style.setProperty('--text-color', '#f0f0f0');
+                document.documentElement.style.setProperty('--light-bg', '#2d2d2d');
+                document.body.style.backgroundColor = '#1a1a1a';
+                document.body.style.color = '#f0f0f0';
+            } else if (style === 'gradient') {
+                document.body.style.background = 'linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)';
+                document.body.style.backgroundAttachment = 'fixed';
+            } else {
+                // Reset to default
+                document.documentElement.style.setProperty('--text-color', '#2b2d42');
+                document.documentElement.style.setProperty('--light-bg', '#f8f9fa');
+                document.body.style.backgroundColor = '';
+                document.body.style.background = '';
+                document.body.style.color = '';
+            }
+        });
+
+        // Reset Theme
+        document.getElementById('reset-theme').addEventListener('click', function() {
+            location.reload();
+        });
+
+        // Smooth Scrolling for Anchor Links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    document.getElementById('nav-menu').classList.remove('show');
+                    document.getElementById('mobile-menu').querySelector('i').classList.remove('fa-times');
+                    document.getElementById('mobile-menu').querySelector('i').classList.add('fa-bars');
+                }
+            });
+        });
+
+        // Form Submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your message! We will get back to you within 24 hours.');
+            this.reset();
+        });
+
+        // AI Assistant Chatbot
+        const aiAssistant = document.getElementById('ai-assistant');
+        const aiChatbot = document.getElementById('ai-chatbot');
+        const closeChat = document.getElementById('close-chat');
+        const sendMessageBtn = document.getElementById('send-message');
+        const chatInput = document.getElementById('chat-input');
+        const chatBody = document.getElementById('chat-body');
+
+        aiAssistant.addEventListener('click', function() {
+            aiChatbot.classList.toggle('active');
+        });
+
+        closeChat.addEventListener('click', function() {
+            aiChatbot.classList.remove('active');
+        });
+
+        sendMessageBtn.addEventListener('click', sendMessage);
+        chatInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') sendMessage();
+        });
+
+        function sendMessage() {
+            const message = chatInput.value.trim();
+            if (!message) return;
+            
+            // Add user message
+            const userMessage = document.createElement('div');
+            userMessage.className = 'chat-message user';
+            userMessage.textContent = message;
+            chatBody.appendChild(userMessage);
+            
+            // Clear input
+            chatInput.value = '';
+            
+            // Scroll to bottom
+            chatBody.scrollTop = chatBody.scrollHeight;
+            
+            // Simulate AI response after delay
+            setTimeout(() => {
+                const botMessage = document.createElement('div');
+                botMessage.className = 'chat-message bot';
+                
+                // Simple AI responses based on keywords
+                let response = "Thank you for your message. How else can I assist you with information about BSS School?";
+                
+                if (message.toLowerCase().includes('admission') || message.toLowerCase().includes('apply')) {
+                    response = "Our admissions are open for the 2025-26 academic year. You can visit our campus or apply online through our website. Would you like me to provide more details?";
+                } else if (message.toLowerCase().includes('fee') || message.toLowerCase().includes('cost')) {
+                    response = "Our fee structure varies by grade level. You can find detailed fee information on our website or contact our admissions office at +91 7078470606 for a personalized breakdown.";
+                } else if (message.toLowerCase().includes('program') || message.toLowerCase().includes('curriculum')) {
+                    response = "We offer comprehensive programs from elementary to high school with a focus on holistic development. Our curriculum includes STEM, arts, sports, and character education. Which grade level are you interested in?";
+                } else if (message.toLowerCase().includes('teacher') || message.toLowerCase().includes('faculty')) {
+                    response = "Our faculty consists of highly qualified and experienced educators, many with advanced degrees. They are dedicated to providing personalized attention to each student. Would you like to know about our teacher-student ratio?";
+                } else if (message.toLowerCase().includes('facilit') || message.toLowerCase().includes('infrastructure')) {
+                    response = "We have state-of-the-art facilities including science labs, digital library, computer labs, sports complex, and smart classrooms. Would you like to schedule a campus tour to see our facilities?";
+                }
+                
+                botMessage.textContent = response;
+                chatBody.appendChild(botMessage);
+                
+                // Scroll to bottom
+                chatBody.scrollTop = chatBody.scrollHeight;
+            }, 1000);
+        }
+
+        // Animate elements on scroll
+        function animateOnScroll() {
+            const elements = document.querySelectorAll('.ai-fade-in, .ai-slide-in-left, .ai-slide-in-right');
+            
+            elements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < window.innerHeight - elementVisible) {
+                    element.classList.add('visible');
+                }
+            });
+        }
+
+        // Counter Animation for Stats
+        function animateCounters() {
+            const counters = document.querySelectorAll('.stat-number');
+            const speed = 200;
+            
+            counters.forEach(counter => {
+                const target = parseInt(counter.getAttribute('data-target') || 
+                    (counter.id === 'students-count' ? 600 :
+                     counter.id === 'teachers-count' ? 15 :
+                     counter.id === 'years-count' ? 26 :
+                     counter.id === 'courses-count' ? 10 : 0));
+                
+                const updateCount = () => {
+                    const count = parseInt(counter.innerText);
+                    const increment = target / speed;
+                    
+                    if (count < target) {
+                        counter.innerText = Math.ceil(count + increment);
+                        setTimeout(updateCount, 10);
+                    } else {
+                        counter.innerText = target.toLocaleString();
+                    }
+                };
+                
+                updateCount();
+            });
+        }
+
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            const backToTop = document.getElementById('back-to-top');
+            
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+                backToTop.classList.add('active');
+            } else {
+                header.classList.remove('scrolled');
+                backToTop.classList.remove('active');
+            }
+            
+            // Trigger animations
+            animateOnScroll();
+        });
+
+        // Initialize animations and counters when page loads
+        window.addEventListener('load', function() {
+            // Trigger initial animation
+            animateOnScroll();
+            
+            // Animate counters after stats section is in view
+            setTimeout(animateCounters, 500);
+            
+            // Set data targets for counters
+            document.getElementById('students-count').setAttribute('data-target', '600');
+            document.getElementById('teachers-count').setAttribute('data-target', '15');
+            document.getElementById('years-count').setAttribute('data-target', '26');
+            document.getElementById('courses-count').setAttribute('data-target', '10');
+            
+            // Start with 0 values
+            document.getElementById('students-count').innerText = '0';
+            document.getElementById('teachers-count').innerText = '0';
+            document.getElementById('years-count').innerText = '0';
+            document.getElementById('courses-count').innerText = '0';
+        });
+
+        // Set current year in footer
+        document.addEventListener('DOMContentLoaded', function() {
+            const yearSpan = document.querySelector('.copyright p');
+            if (yearSpan) {
+                const currentYear = new Date().getFullYear();
+                yearSpan.innerHTML = yearSpan.innerHTML.replace('2025', currentYear);
+            }
+        });
+    </script>
+</body>
+</html>

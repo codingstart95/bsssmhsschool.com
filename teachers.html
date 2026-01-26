@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Teachers - Bloomingdale School</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: "Poppins", sans-serif;
+            background: linear-gradient(135deg, #ffffff, #e8f4ff);
+        }
+
+        /* Section */
+        .teachers-section {
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .teachers-title {
+            font-size: 42px;
+            color: #1f2d47;
+            margin-bottom: 40px;
+            font-weight: 600;
+            text-shadow: 0 0 14px rgba(0, 140, 255, 0.25);
+        }
+
+        /* Grid Box */
+        .teachers-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 30px;
+            padding: 0 40px;
+        }
+
+        /* Teacher Card */
+        .teacher-card {
+            background: rgba(255, 255, 255, 0.65);
+            border-radius: 18px;
+            padding: 25px;
+            text-align: center;
+            box-shadow: 0 0 15px rgba(0, 140, 255, 0.25);
+            backdrop-filter: blur(10px);
+
+            /* Animation */
+            opacity: 0;
+            transform: translateY(40px) scale(0.95);
+            animation: fadeUp 1s ease forwards;
+        }
+
+        /* Delay animation for stagger effect */
+        .teacher-card:nth-child(2) { animation-delay: .2s; }
+        .teacher-card:nth-child(3) { animation-delay: .4s; }
+        .teacher-card:nth-child(4) { animation-delay: .6s; }
+        .teacher-card:nth-child(5) { animation-delay: .8s; }
+        .teacher-card:nth-child(6) { animation-delay: 1s; }
+        .teacher-card:nth-child(7) { animation-delay: 1.2s; }
+        .teacher-card:nth-child(8) { animation-delay: 1.4s; }
+        .teacher-card:nth-child(9) { animation-delay: 1.6s; }
+        .teacher-card:nth-child(10) { animation-delay: 1.8s; }
+
+        /* Teacher Image */
+        .teacher-img {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 20px;
+            overflow: hidden;
+            border-radius: 50%;
+            border: 4px solid #008CFF;
+            box-shadow: 0 0 12px rgba(0, 140, 255, 0.35);
+        }
+
+        .teacher-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Text */
+        .teacher-name {
+            font-size: 22px;
+            font-weight: 600;
+            color: #1b2c45;
+        }
+
+        .teacher-subject {
+            font-size: 15px;
+            color: #0056b3;
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+
+        .teacher-desc {
+            font-size: 14px;
+            color: #333;
+            opacity: 0.8;
+            line-height: 1.5;
+        }
+
+        /* Hover Effect */
+        .teacher-card:hover {
+            transform: translateY(-8px) scale(1.03);
+            transition: 0.3s ease;
+            box-shadow: 0 0 25px rgba(0, 140, 255, 0.35);
+        }
+
+        /* AI Fade Animation */
+        @keyframes fadeUp {
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+    </style>
+</head>
+<body>
+
+<section class="teachers-section">
+    <h2 class="teachers-title">Our Teachers</h2>
+
+    <div class="teachers-container">
+
+        <!-- Teacher Profiles -->
+
+        <div class="teacher-card">
+            <div class="teacher-img"><img src="ajeetsir.jpg"></div>
+            <h3 class="teacher-name">Ajeet Singh</h3>
+            <p class="teacher-subject">Social Science Teacher</p>
+            <p class="teacher-desc">10+ years of teaching experience in Social Studies & Moral Values.</p>
+        </div>
+
+        <div class="teacher-card">
+            <div class="teacher-img"><img src="asishiiiiii.jpg"></div>
+            <h3 class="teacher-name">Ashish Bharti</h3>
+            <p class="teacher-subject">General Knowledge Teacher</p>
+            <p class="teacher-desc">Teaches GK with real-world examples and competitive exam focus.</p>
+        </div>
+
+        <div class="teacher-card">
+            <div class="teacher-img"><img src="vevesh.jpg"></div>
+            <h3 class="teacher-name">Vivesh Chauhan</h3>
+            <p class="teacher-subject">Science Teacher</p>
+            <p class="teacher-desc">Makes science easy with experiments and practical learning.</p>
+        </div>
+
+        <div class="teacher-card">
+            <div class="teacher-img"><img src="Ravindra.jpg"></div>
+            <h3 class="teacher-name">Ravinder Sharma</h3>
+            <p class="teacher-subject">Maths Teacher</p>
+            <p class="teacher-desc">Expert in problem-solving and conceptual mathematics.</p>
+        </div>
+
+        <div class="teacher-card">
+            <div class="teacher-img"><img src="nilam.jpg"></div>
+            <h3 class="teacher-name">Nilam Kumari</h3>
+            <p class="teacher-subject">Hindi Teacher</p>
+            <p class="teacher-desc">Brings creativity and literature awareness among students.</p>
+        </div>
+
+        <div class="teacher-card">
+            <div class="teacher-img"><img src="Aman Sir.jpg"></div>
+            <h3 class="teacher-name">Aman Kumar</h3>
+            <p class="teacher-subject">English Teacher</p>
+            <p class="teacher-desc">Improves communication, grammar, and confidence.</p>
+        </div>
+
+        <div class="teacher-card">
+            <div class="teacher-img"><img src="teacher4.jpg"></div>
+            <h3 class="teacher-name">Shorabh Singh</h3>
+            <p class="teacher-subject">Maths Teacher</p>
+            <p class="teacher-desc">Focuses on accuracy, speed, and logical math.</p>
+        </div>
+
+        <div class="teacher-card">
+            <div class="teacher-img"><img src="sunita.jpg"></div>
+            <h3 class="teacher-name">Sunita Kumari</h3>
+            <p class="teacher-subject">Maths Teacher</p>
+            <p class="teacher-desc">Encourages students with activity-based mathematics.</p>
+        </div>
+
+        <div class="teacher-card">
+            <div class="teacher-img"><img src="chandrasen.jpg"></div>
+            <h3 class="teacher-name">Chandrasen Arya</h3>
+            <p class="teacher-subject">Maths Teacher</p>
+            <p class="teacher-desc">Passionate about foundational and advanced mathematics.</p>
+        </div>
+
+        <div class="teacher-card">
+            <div class="teacher-img"><img src="riya.jpg"></div>
+            <h3 class="teacher-name">Riya</h3>
+            <p class="teacher-subject">Maths Teacher</p>
+            <p class="teacher-desc">Helps students understand maths with real-life examples.</p>
+        </div>
+
+        <div class="teacher-card">
+            <div class="teacher-img"><img src="Anshika.jpg"></div>
+            <h3 class="teacher-name">Anshika </h3>
+            <p class="teacher-subject">Science Teacher</p> 
+            <p class="teacher-desc">Dedicated to clarity and conceptual strength.</p>
+        </div>
+
+        <div class="teacher-card">
+            <div class="teacher-img"><img src="bhupendra.jpeg.jpg"></div>
+            <h3 class="teacher-name">Bhupendra Singh</h3>
+            <p class="teacher-subject">Maths Teacher</p>
+            <p class="teacher-desc">Encourages analytical thinking and smart techniques.</p>
+        </div>
+
+    </div>
+</section>
+
+</body>
+</html>
