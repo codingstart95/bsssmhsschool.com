@@ -496,69 +496,79 @@
         }
 
         /* Leadership Section */
-        .leadership {
-            background-color: var(--light-bg);
-        }
+.leadership {
+    background-color: var(--light-bg);
+    padding: 80px 20px;
+}
 
-        .leadership-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 35px;
-            margin-top: 50px;
-        }
+.leadership-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 35px;
+    margin-top: 50px;
+}
 
-        .leader-card {
-            background: white;
-            border-radius: var(--border-radius);
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-            position: relative;
-            text-align: center;
-        }
+.leader-card {
+    background: white;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    transition: 0.4s ease;
+    text-align: center;
+    padding-bottom: 20px;
+}
 
-        .leader-card:hover {
-            transform: translateY(-15px);
-            box-shadow: var(--shadow-hover);
-        }
+.leader-card:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--shadow-hover);
+}
 
-        .leader-img {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 5px solid white;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            margin: 30px auto 20px;
-            display: block;
-            position: relative;
-            z-index: 2;
-        }
+.leader-img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 5px solid white;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    margin: 30px auto 20px;
+    display: block;
+}
 
-        .leader-content {
-            padding: 0 25px 30px;
-        }
+.leader-content {
+    padding: 0 25px;
+}
 
-        .leader-content h3 {
-            color: var(--secondary-color);
-            margin-bottom: 5px;
-            font-size: 1.4rem;
-        }
+.leader-content h3 {
+    color: var(--secondary-color);
+    margin-bottom: 5px;
+}
 
-        .position {
-            color: var(--primary-color);
-            font-weight: 600;
-            margin-bottom: 15px;
-            display: inline-block;
-            padding: 5px 15px;
-            background: rgba(67, 97, 238, 0.1);
-            border-radius: 50px;
-        }
+.position {
+    color: var(--primary-color);
+    font-weight: 600;
+    margin-bottom: 15px;
+    display: inline-block;
+    padding: 5px 15px;
+    background: rgba(67,97,238,0.1);
+    border-radius: 50px;
+}
 
-        .desc {
-            color: #666;
-            line-height: 1.7;
-        }
+.desc {
+    color: #666;
+    line-height: 1.7;
+}
+
+/* SAFE animation (will not hide forever) */
+.ai-fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease;
+}
+
+.ai-fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
 
         /* Programs Section */
         .programs-grid {
@@ -1557,92 +1567,81 @@
             </div>
         </div>
     </section>
-
-    <!-- Leadership Section -->
-    <section class="leadership" id="leadership">
-        <div class="container">
-            <div class="section-title">
-                <h2>Meet Our Leadership</h2>
-                <p>The visionary leaders who guide our institution towards excellence and innovation in education.</p>
-            </div>
-
-            <div class="leadership-grid">
-                
-<!-- Founder -->
-<div class="leader-card ai-fade-in">
-    <img src="nana.jpg" alt="Founder" class="leader-img">
-    <div class="leader-content">
-        <h3>Late Shri Jagannath Singh</h3>
-        <p class="position">School Founder</p>
-        <p class="desc">The visionary who established J.S.S. Academy with a mission to provide accessible, quality education to the community of Budaun. His legacy continues to inspire our educational philosophy.</p>
-    </div>
-</div>
-
-<!-- President -->
-<div class="leader-card ai-fade-in">
-    <img src="satyapal photo.jpg" alt="President" class="leader-img">
-    <div class="leader-content">
-        <h3>Mr. Satyapal Singh</h3>
-        <p class="position">School President</p>
-        <p class="desc">Guiding the strategic vision and long-term direction of our institution, Mr. Satyapal Singh ensures alignment with our founding mission while fostering growth and community engagement.</p>
-    </div>
-</div>
-
-                
-<!-- Director -->
-<div class="leader-card ai-fade-in">
-    <img src="mr. parshuram.jpg" alt="Director" class="leader-img">
-    <div class="leader-content">
-        <h3>Mr. Parshuram</h3>
-        <p class="position">School Director</p>
-        <p class="desc">Overseeing academic oversight and pedagogical leadership, Mr. Parshuram ensures curriculum excellence, teacher development, and innovative learning practices for our students.</p>
-    </div>
-</div>
-
-<!-- Vice Director -->
-<div class="leader-card ai-fade-in">
-    <img src="mohitsir.jpg" alt="Vice Director" class="leader-img">
-    <div class="leader-content">
-        <h3>Netendra Pratap Singh</h3>
-        <p class="position">School Vice Director</p>
-        <p class="desc">Supporting the Director in academic leadership, Netendra Pratap Singh focuses on implementing educational strategies, monitoring student progress, and enhancing teaching methodologies.</p>
-    </div>
-</div>
-                <!-- Manager -->
-<div class="leader-card ai-fade-in">
-    <img src="sarvesh.jpg" alt="Manager" class="leader-img">
-    <div class="leader-content">
-        <h3>Sarvesh Kumari</h3>
-        <p class="position">School Manager</p>
-        <p class="desc">With over 25 years of experience in education administration, Sarvesh Kumari ensures our school maintains the highest standards of operational efficiency, academic excellence, and day-to-day management.</p>
-    </div>
-</div>
-  
-<!-- Former Manager -->
-<div class="leader-card ai-fade-in">
-    <img src="baba.jpg" alt="Former Manager" class="leader-img">
-    <div class="leader-content">
-        <h3>Late Shri Summer Singh</h3>
-        <p class="position">Former School Manager</p>
-        <p class="desc">Steered the institution through years of growth with dedication, laying a strong administrative foundation and nurturing a student-centric environment that continues to thrive today.</p>
-    </div>
-</div>
-
-
-
-<!-- Vice Chairman -->
-<div class="leader-card ai-fade-in">
-    <img src="netra.jpg" alt="Vice Chairman" class="leader-img">
-    <div class="leader-content">
-        <h3>Netra Pal Singh</h3>
-        <p class="position">School Vice Chairman</p>
-        <p class="desc">Assisting in governance and advisory functions, Netra Pal Singh works closely with the leadership team on policy development, institutional planning, and stakeholder relations.</p>
-    </div>
-</div>
-                
-            </div>
+<section class="leadership" id="leadership">
+    <div class="container">
+        <div class="section-title">
+            <h2>Meet Our Leadership</h2>
+            <p>The visionary leaders who guide our institution towards excellence and innovation in education.</p>
         </div>
-    </section>
+
+        <div class="leadership-grid">
+
+            <div class="leader-card ai-fade-in">
+                <img src="nana.jpg" alt="Founder" class="leader-img">
+                <div class="leader-content">
+                    <h3>Late Shri Jagannath Singh</h3>
+                    <p class="position">School Founder</p>
+                    <p class="desc">Visionary founder of J.S.S. Academy.</p>
+                </div>
+            </div>
+
+            <div class="leader-card ai-fade-in">
+                <img src="satyapal photo.jpg" alt="President" class="leader-img">
+                <div class="leader-content">
+                    <h3>Mr. Satyapal Singh</h3>
+                    <p class="position">School President</p>
+                    <p class="desc">Guiding the long-term vision of the institution.</p>
+                </div>
+            </div>
+
+            <div class="leader-card ai-fade-in">
+                <img src="mr. parshuram.jpg" alt="Director" class="leader-img">
+                <div class="leader-content">
+                    <h3>Mr. Parshuram</h3>
+                    <p class="position">School Director</p>
+                    <p class="desc">Overseeing academic excellence.</p>
+                </div>
+            </div>
+
+            <div class="leader-card ai-fade-in">
+                <img src="mohitsir.jpg" alt="Vice Director" class="leader-img">
+                <div class="leader-content">
+                    <h3>Netendra Pratap Singh</h3>
+                    <p class="position">School Vice Director</p>
+                    <p class="desc">Supporting academic leadership.</p>
+                </div>
+            </div>
+
+            <div class="leader-card ai-fade-in">
+                <img src="sarvesh.jpg" alt="Manager" class="leader-img">
+                <div class="leader-content">
+                    <h3>Sarvesh Kumari</h3>
+                    <p class="position">School Manager</p>
+                    <p class="desc">Ensures smooth administration.</p>
+                </div>
+            </div>
+
+            <div class="leader-card ai-fade-in">
+                <img src="baba.jpg" alt="Former Manager" class="leader-img">
+                <div class="leader-content">
+                    <h3>Late Shri Summer Singh</h3>
+                    <p class="position">Former School Manager</p>
+                    <p class="desc">Built strong administrative foundation.</p>
+                </div>
+            </div>
+
+            <div class="leader-card ai-fade-in">
+                <img src="netra.jpg" alt="Vice Chairman" class="leader-img">
+                <div class="leader-content">
+                    <h3>Netra Pal Singh</h3>
+                    <p class="position">School Vice Chairman</p>
+                    <p class="desc">Supports governance and planning.</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
 
     <!-- Programs Section -->
     <section class="programs" id="programs">
@@ -2795,4 +2794,5 @@
         });
     </script>
 </body>
+
 </html>
