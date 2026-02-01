@@ -1586,7 +1586,7 @@
             </div>
 
             <div class="leader-card ai-fade-in">
-                <img src="satyapal photo.jpg" alt="President" class="leader-img">
+                <img src="satyapalphoto.jpg" alt="President" class="leader-img">
                 <div class="leader-content">
                     <h3>Mr. Satyapal Singh</h3>
                     <p class="position">School President</p>
@@ -1642,6 +1642,23 @@
         </div>
     </div>
 </section>
+    <script>
+document.addEventListener("DOMContentLoaded", function () {
+    const faders = document.querySelectorAll('.ai-fade-in');
+
+    const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                obs.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.15 });
+
+    faders.forEach(el => observer.observe(el));
+});
+</script>
+
 
     <!-- Programs Section -->
     <section class="programs" id="programs">
@@ -2796,3 +2813,4 @@
 </body>
 
 </html>
+
